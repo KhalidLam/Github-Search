@@ -13,6 +13,7 @@ class App extends Component {
   state = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
     alert: null,
   };
@@ -43,6 +44,22 @@ class App extends Component {
     this.setState({ user: resp.data, loading: false });
   };
 
+  // Get users repos
+  getUserRepos = async (username) => {
+    this.setState({ loading: true });
+
+    const resp = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=10&sort=created:asc&client_id=
+      ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    // Get all non-forked repos
+    const nonForkRepos = resp.data.filter((repo) => !repo.fork);
+
+    this.setState({ repos: nonForkRepos, loading: false });
+  };
+
   // Clear users from state
   clearUsers = () => this.setState({ users: [], loading: false });
 
@@ -53,7 +70,7 @@ class App extends Component {
   };
 
   render() {
-    const { loading, users, user, alert } = this.state;
+    const { loading, users, user, repos, alert } = this.state;
     return (
       <Router>
         <div className='App'>
@@ -84,7 +101,9 @@ class App extends Component {
                   <User
                     {...props}
                     getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
                     user={user}
+                    repos={repos}
                     loading={loading}
                   />
                 )}
