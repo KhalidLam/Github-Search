@@ -117,19 +117,3 @@ class App extends Component {
 }
 
 export default App;
-
-// async componentDidMount() {
-//   this.setState({ loading: true });
-
-//   const resp = await axios.get(
-//     `https://api.github.com/users?client_id=
-//     ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
-//     ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-//   );
-
-//   this.setState({ users: resp.data, loading: false });
-// }
-
-//  {alert && (
-//      <button className='btn btn-light btn-block'>{alert.msg}</button>
-//  )}
