@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+
 import Spinner from "../layouts/Spinner";
 import Repos from "../repos/Repos";
 import GithubContext from "../../context/github/githubContext";
@@ -55,6 +56,7 @@ const User = ({ match }) => {
           <h1>{name}</h1>
           <p>Location: {location}</p>
         </div>
+
         <div>
           {bio && (
             <Fragment>
@@ -96,6 +98,7 @@ const User = ({ match }) => {
             </li>
           </ul>
         </div>
+        
       </div>
       <div className='card text-center'>
         <div className='badge badge-primary'>Followers: {followers}</div>
