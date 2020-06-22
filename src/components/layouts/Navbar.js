@@ -2,25 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Navbar = ({ icon, title }) => {
-  return (
-    <nav className='navbar bg-primary'>
-      <h1>
-        <Link to='/'>
-          <i className={icon}> {title}</i>
-        </Link>
-      </h1>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/about'>About</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-};
+const Navbar = ({ icon, title }) => (
+  <nav className='navbar bg-primary'>
+    <h1>
+      <Link to='/'>
+        <i className={icon}> {title}</i>
+      </Link>
+    </h1>
+    <ul>
+      <li>
+        <Link to='/'>Home</Link>
+      </li>
+      <li>
+        <Link to='/about'>About</Link>
+      </li>
+    </ul>
+  </nav>
+);
 
 Navbar.defaultProps = {
   title: "Github Finder",
