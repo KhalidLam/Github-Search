@@ -50,6 +50,20 @@ const GithubState = (props) => {
   };
 
   // Get Repos
+  const getUserRepos = async (username) => {
+    setLoading();
+
+    const resp = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=10&sort=created:asc&client_id=
+      ${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=
+      ${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+
+    // Get all non-forked repos
+    // const nonForkRepos = resp.data.filter((repo) => !repo.fork);
+
+    dispatch({ type: GET_REPOS, payload: resp.data });
+  };
 
   // Clear Users
   const clearUsers = () => {
@@ -69,6 +83,7 @@ const GithubState = (props) => {
         searchUsers,
         clearUsers,
         getUser,
+        getUserRepos,
       }}
     >
       {props.children}
